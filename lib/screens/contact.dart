@@ -1,33 +1,98 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-
 import '../Menu/menuapp.dart';
 import '../theme/banner.dart';
 
 class Contact extends StatefulWidget {
-  Contact({this.app});
-  final FirebaseApp? app;
+  final String? reference;
+  final String? title;
+  Contact({this.reference, this.title});
 
   @override
-  State<Contact> createState() => _ContactState();
+  State createState() =>
+      _ContactState(reference: this.reference, title: this.title);
 }
 
 class _ContactState extends State<Contact> {
-  // const Contact({Key? key}) : super(key: key);
+  final String? reference;
+  final String? title;
+
+  _ContactState({this.reference, this.title});
+
   Banners banners = Banners();
 
   MenuApp menuApp = MenuApp();
 
-  final referenceDatabase = FirebaseDatabase.instance;
+  List contacts = [];
 
-  // final databaseReference = FirebaseDatabase.instance.ref();
-  // DatabaseReference dataRef = databaseReference.child("your_node_name");
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  // Query dbRef = FirebaseDatabase.instance.ref().child(
-  //     'https://thewaitingroom-6f4c0-default-rtdb.europe-west1.firebasedatabase.app/');
+  DatabaseService() {}
+
+  Future<void> getContacts() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await _db.collection("contacts/categories/$reference").orderBy("post_title").get();
+      final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+
+      setState(() {
+        contacts = allData;
+      });
+      
+    } catch (e) {
+      // print(e);
+    }
+  }
+
+  Future<void> populateTor() async {
+    // print(" this functions exists to populate firestore db");
+
+    final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+    final List<Map<String, dynamic>> populatingList = [
+      {
+        "ID": "string",
+        "post_title": "string",
+        "post_excerpt": "string",
+        "directory_number": "string",
+        "directory_url": "string",
+        "post_category": "string",
+        "post_type": "string",
+        "post_status": "string"
+      }
+    ];
+
+    for (var i = 0; i < populatingList.length; i = i + 1) {
+      if (populatingList[i]["post_category"].toString().toLowerCase() ==
+          title.toString().toLowerCase()) {
+        await _db.collection("contacts/categories/$reference").doc().set({
+          "directory_number": populatingList[i]["directory_number"],
+          "directory_url": populatingList[i]["directory_url"],
+          "post_category": populatingList[i]["post_category"],
+          "post_excerpt": populatingList[i]["post_excerpt"],
+          "post_status": populatingList[i]["post_status"],
+          "post_title": populatingList[i]["post_title"],
+          "post_type": populatingList[i]["post_type"],
+        });
+
+        // print(populatingList[i]);
+        // print("Data Inserted --------------");
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getContacts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +101,7 @@ class _ContactState extends State<Contact> {
           elevation: 0,
           backgroundColor: Color(0XFFEEE4FF),
           title: Text(
-            'Housing and Homelessness',
+            ((title).toString()),
             style: TextStyle(color: Colors.black, fontSize: 18),
           ),
           actions: [menuApp]),
@@ -45,37 +110,18 @@ class _ContactState extends State<Contact> {
         children: [
           banners,
           Expanded(
-            child: ListView(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                CustomsCard(
-                    titles: 'Focus Housing Ltd',
-                    subtitles:
-                        'Provision of Social Housing to Adults with Substance Misuse, Alcohol Issues and Homelessness'),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomsCard(
-                    titles: 'Birmingham City Council - Housing',
-                    subtitles: 'Housing support - advice'),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomsCard(
-                    titles: 'MyBnk - The Money House',
-                    subtitles:
-                        'Helps young people in, or about to move into, independent housing manage their money & maintain their tenancy. Finance / Education'),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomsCard(
-                    titles: 'Witton Lodge Community Association',
-                    subtitles:
-                        'Local community housing & support based in Perry Common'),
-              ],
-            ),
+            child: ListView(children: [
+              ...contacts.map((item) => Column(children: <Widget>[
+                    SizedBox(
+                      height: 10,
+                    ),
+                    CustomsCard(
+                        titles: item!["post_title"],
+                        subtitles: item!["post_excerpt"]),
+                    // phone: item!["directory_number"],
+                    // url: item!["directory_url"]
+                  ])),
+            ]),
           ),
         ],
       )),

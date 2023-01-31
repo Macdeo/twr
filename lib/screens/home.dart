@@ -25,7 +25,6 @@ class _HomeState extends State<Home> {
   Sliders sliders = Sliders();
   Banners banners = Banners();
   MenuApp menuApp = MenuApp();
-  MenuService menuService = MenuService();
   TestMenuService testMenuService = TestMenuService();
 
   int? currentIndex;
@@ -33,13 +32,12 @@ class _HomeState extends State<Home> {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   DatabaseService() {}
-  List allDocData = [];
+  List ? allDocData = [];
 
   Future<void> getCategories() async {
     try {
       List<dynamic> data = [];
-      // print('hey');
-      QuerySnapshot querySnapshot = await _db.collection("categories").get();
+      QuerySnapshot querySnapshot = await _db.collection("categories").orderBy("label").get();
 
       // Get data from docs and convert map to List
       final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
@@ -144,10 +142,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Expanded(
-                child:
-                    // testMenuService
-                    menuService),
+            Expanded(child: MenuService( categories : allDocData ) ),
           ],
         ),
       ),
