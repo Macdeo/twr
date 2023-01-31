@@ -4,6 +4,7 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:twr/Menu/menuapp.dart';
 import 'package:twr/Menu/menuservices.dart';
+import 'package:twr/menu/menulist.dart';
 import 'package:twr/menu/navbar.dart';
 import 'package:twr/menu/testmenu.dart';
 import 'package:twr/screens/aboutus.dart';
@@ -26,24 +27,50 @@ class _HomeState extends State<Home> {
   Banners banners = Banners();
   MenuApp menuApp = MenuApp();
   TestMenuService testMenuService = TestMenuService();
+  final MenuList menuList = MenuList();
 
   int? currentIndex;
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   DatabaseService() {}
-  List ? allDocData = [];
+  List? allDocData = [];
 
   Future<void> getCategories() async {
     try {
       List<dynamic> data = [];
-      QuerySnapshot querySnapshot = await _db.collection("categories").orderBy("label").get();
+      QuerySnapshot querySnapshot =
+          await _db.collection("categories").orderBy("label").get();
 
       // Get data from docs and convert map to List
       final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
 
+      List<dynamic> modifiedData = [];
+
+      for (var i = 0; i < allData.length; i = i + 1) {
+        final currentData = allData[i];
+
+        int colorIndex = 0;
+
+        final int lastColorIndex = (i == 0)
+            ? 0
+            : modifiedData[modifiedData.length - 1]!["colorIndex"] as int;
+
+        if (i > 0) {
+          if ((lastColorIndex < (menuList.menuColors.length - 1)) && (i != 0)) {
+            colorIndex = lastColorIndex + 1;
+          } else {
+            colorIndex = 0;
+          }
+        }
+
+        final newData = {...(currentData as dynamic), "colorIndex": colorIndex};
+
+        modifiedData.add(newData);
+      }
+
       setState(() {
-        allDocData = allData;
+        allDocData = modifiedData;
       });
     } catch (e) {
       print(e);
@@ -142,7 +169,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Expanded(child: MenuService( categories : allDocData ) ),
+            Expanded(child: MenuService(categories: allDocData)),
           ],
         ),
       ),

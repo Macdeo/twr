@@ -25,7 +25,7 @@ class MenuService extends StatelessWidget {
         crossAxisCount: 2,
         children: <Widget>[
           ...(categories!.map((item) => CustomSizedBox(
-              colors: menuList.menuColors[0].menuColor,
+              colors: menuList.menuColors[item?["colorIndex"]].menuColor,
               text: item?["label"],
               onPress: () => NavigationService().navigateToScreen(Contact( reference : item?["key"] , title: item?["label"], ))))),
         ]);
