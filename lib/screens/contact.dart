@@ -1,13 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
 import '../Menu/menuapp.dart';
 import '../theme/banner.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Contact extends StatefulWidget {
   final String? reference;
@@ -37,14 +34,15 @@ class _ContactState extends State<Contact> {
 
   Future<void> getContacts() async {
     try {
-      QuerySnapshot querySnapshot =
-          await _db.collection("contacts/categories/$reference").orderBy("post_title").get();
+      QuerySnapshot querySnapshot = await _db
+          .collection("contacts/categories/$reference")
+          .orderBy("post_title")
+          .get();
       final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
 
       setState(() {
         contacts = allData;
       });
-      
     } catch (e) {
       // print(e);
     }
@@ -98,6 +96,7 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          foregroundColor: Colors.black,
           elevation: 0,
           backgroundColor: Color(0XFFEEE4FF),
           title: Text(
@@ -210,8 +209,8 @@ class CustomsCard extends StatelessWidget {
                   shape: CircleBorder(),
                 ),
                 child: IconButton(
-                  icon: Icon(
-                    Icons.facebook,
+                  icon: FaIcon(
+                    FontAwesomeIcons.facebook,
                     color: Colors.white,
                   ),
                   onPressed: () {},
@@ -223,8 +222,8 @@ class CustomsCard extends StatelessWidget {
                   shape: CircleBorder(),
                 ),
                 child: IconButton(
-                  icon: Icon(
-                    Icons.facebook,
+                  icon: FaIcon(
+                    FontAwesomeIcons.twitter,
                     color: Colors.white,
                   ),
                   onPressed: () {},
@@ -235,11 +234,10 @@ class CustomsCard extends StatelessWidget {
                   color: Color(0xFF0077b5),
                   shape: CircleBorder(),
                 ),
-                child: TextButton(
-                  child: Text(
-                    'in',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                child: IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.linkedin,
+                    color: Colors.white,
                   ),
                   onPressed: () {},
                 ),

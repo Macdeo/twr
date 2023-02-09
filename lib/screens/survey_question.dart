@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, avoid_print, must_be_immutable
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:twr/models/question_bank.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -16,15 +17,40 @@ class _SurveyQuestionState extends State<SurveyQuestion> {
   QuestionBank questionBank = QuestionBank();
   String groupValue = "";
   List<String> allGroupVal = [];
+  String? id;
 
   TextEditingController inputAnswer = TextEditingController();
+
+  late final db = FirebaseFirestore.instance;
+
   var size, height, width;
+
+  late final docData = {
+    "question01": allGroupVal[0],
+    "question02": allGroupVal[1],
+    "question03": allGroupVal[2],
+    "question04": allGroupVal[3],
+    "question05": allGroupVal[4],
+    "question06": allGroupVal[5],
+    "question07": allGroupVal[6],
+    "question08": allGroupVal[7],
+    "question09": allGroupVal[8],
+    "question10": allGroupVal[9],
+    "question11": allGroupVal[10],
+  };
 
   void userAnswer(userPickedAns) {
     bool pickLast = questionBank.finishedQuestion();
 
     setState(() {
       if (pickLast == true) {
+        allGroupVal.add(groupValue);
+        db
+            .collection("surveyanswers")
+            .doc(id)
+            .set(docData)
+            .onError((e, _) => print("Error writing document: $e"));
+
         Alert(
           context: context,
           type: AlertType.success,

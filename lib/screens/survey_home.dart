@@ -111,7 +111,8 @@ class _SurveyHomeState extends State<SurveyHome> {
             Expanded(
               flex: 6,
               child: Image.asset(
-                'assets/images/3d-business-man-and-woman-working-at-the-table.png',
+                'assets/images/smileys.jpg',
+                // 'assets/images/3d-business-man-and-woman-working-at-the-table.png',
                 scale: 0.85,
               ),
             ),
