@@ -54,12 +54,13 @@ class _SurveyQuestionState extends State<SurveyQuestion> {
         Alert(
           context: context,
           type: AlertType.success,
-          title: "Awesome!",
+          title: "Great!",
           desc: "Thank you for participating in our survey",
           closeFunction: () =>
               Navigator.of(context).popUntil((route) => route.isFirst),
           buttons: [
             DialogButton(
+              color: Color(0xFF7F53AC),
               child: Text(
                 "CANCEL",
                 style: TextStyle(color: Colors.white, fontSize: 20),
