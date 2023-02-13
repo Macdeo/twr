@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../Menu/menuapp.dart';
 import '../theme/banner.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Contact extends StatefulWidget {
   final String? reference;
@@ -31,6 +32,15 @@ class _ContactState extends State<Contact> {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   DatabaseService() {}
+
+  // _makingPhoneCall() async {
+  //   var url = Uri.parse(item!["directory_number"]);
+  //   if (await canLaunchUrl(url)) {
+  //     await launchUrl(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   Future<void> getContacts() async {
     try {
@@ -115,8 +125,18 @@ class _ContactState extends State<Contact> {
                       height: 10,
                     ),
                     CustomsCard(
-                        titles: item!["post_title"],
-                        subtitles: item!["post_excerpt"]),
+                      titles: item!["post_title"],
+                      subtitles: item!["post_excerpt"],
+                      call: () async {
+                        var url = Uri.parse(item!["directory_number"]);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      url: item!["directory_url"],
+                    ),
                     // phone: item!["directory_number"],
                     // url: item!["directory_url"]
                   ])),
@@ -133,8 +153,15 @@ class CustomsCard extends StatelessWidget {
 
   final String titles;
   final String subtitles;
+  final VoidCallback call;
+  final String url;
 
-  CustomsCard({required this.titles, required this.subtitles, Key? key})
+  CustomsCard(
+      {required this.titles,
+      required this.subtitles,
+      required this.call,
+      required this.url,
+      Key? key})
       : super(key: key);
 
   @override
@@ -182,7 +209,7 @@ class CustomsCard extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.call),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: call,
                 ),
               ),
               Ink(

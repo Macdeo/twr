@@ -104,17 +104,16 @@ class _SurveyHomeState extends State<SurveyHome> {
             Expanded(
               flex: 1,
               child: Text(
-                'Tell us about you',
+                'Let us know your views',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
             ),
             Expanded(
               flex: 6,
-              child: Image.asset(
-                // 'assets/images/smileys.jpg',
-                'assets/images/3d-business-man-and-woman-working-at-the-table.png',
-                scale: 0.85,
-              ),
+              child: Image.asset('assets/images/smileys.jpg',
+                  // 'assets/images/3d-business-man-and-woman-working-at-the-table.png',
+                  scale: 0.85,
+                  fit: BoxFit.cover),
             ),
             Expanded(
               flex: 4,
@@ -132,7 +131,7 @@ class _SurveyHomeState extends State<SurveyHome> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Text(
-                          'In order to customise your experience, we would like to know more about you.',
+                          'In order to capture your experience, we would like you to give us some feedback.',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
