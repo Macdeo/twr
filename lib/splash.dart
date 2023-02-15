@@ -50,18 +50,9 @@ class _SplashState extends State<Splash> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/splash.jpg'),
+              image: AssetImage('assets/images/splash2.jpeg'),
               fit: BoxFit.fill,
               colorFilter: ColorFilter.linearToSrgbGamma()),
-          // gradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [
-          //     Color(0xFFC5A2FF),
-          //     Color.fromARGB(255, 84, 62, 119),
-          //     Color.fromARGB(255, 52, 39, 73),
-          //   ],
-          // ),
         ),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),

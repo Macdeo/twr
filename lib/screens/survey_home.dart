@@ -124,10 +124,10 @@ class _SurveyHomeState extends State<SurveyHome> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
                     Expanded(
-                      flex: 6,
+                      flex: 7,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Text(

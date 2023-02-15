@@ -2,10 +2,13 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../Menu/menuapp.dart';
 import '../theme/banner.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'conwebsite.dart';
 
 class Contact extends StatefulWidget {
   final String? reference;
@@ -125,18 +128,24 @@ class _ContactState extends State<Contact> {
                       height: 10,
                     ),
                     CustomsCard(
-                      titles: item!["post_title"],
-                      subtitles: item!["post_excerpt"],
-                      call: () async {
-                        var url = Uri.parse(item!["directory_number"]);
-                        if (await canLaunchUrl(url)) {
-                          await launchUrl(url);
-                        } else {
-                          throw 'Could not launch $url';
-                        }
-                      },
-                      url: item!["directory_url"],
-                    ),
+                        titles: item!["post_title"],
+                        subtitles: item!["post_excerpt"],
+                        call: () async {
+                          var url =
+                              Uri.parse('tel:' + item!["directory_number"]);
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        },
+                        url: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      YourWebView(item!["directory_url"])));
+                        }),
                     // phone: item!["directory_number"],
                     // url: item!["directory_url"]
                   ])),
@@ -154,7 +163,7 @@ class CustomsCard extends StatelessWidget {
   final String titles;
   final String subtitles;
   final VoidCallback call;
-  final String url;
+  final VoidCallback url;
 
   CustomsCard(
       {required this.titles,
@@ -226,7 +235,7 @@ class CustomsCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 12),
                   ),
-                  onPressed: () {},
+                  onPressed: url,
                 ),
               ),
               Ink(
