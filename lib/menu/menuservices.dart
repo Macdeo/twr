@@ -6,14 +6,12 @@ import 'menulist.dart';
 import 'package:twr/screens/contact.dart';
 
 class MenuService extends StatelessWidget {
-  
   const MenuService({Key? key, this.categories}) : super(key: key);
 
   final List<dynamic>? categories;
 
   @override
   Widget build(BuildContext context) {
-
     final MenuList menuList = MenuList();
 
     return GridView.count(
@@ -27,7 +25,10 @@ class MenuService extends StatelessWidget {
           ...(categories!.map((item) => CustomSizedBox(
               colors: menuList.menuColors[item?["colorIndex"]].menuColor,
               text: item?["label"],
-              onPress: () => NavigationService().navigateToScreen(Contact( reference : item?["key"] , title: item?["label"], ))))),
+              onPress: () => NavigationService().navigateToScreen(Contact(
+                    reference: item?["key"],
+                    title: item?["label"],
+                  ))))),
         ]);
   }
 }

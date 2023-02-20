@@ -9,12 +9,7 @@ import '../main.dart';
 
 class MenuList {
   final List<Menu> menu = [
-    Menu(
-        title: 'Housing & Homelessness',
-        page: () {
-          NavigationService().navigateToScreen(Contact());
-          print('hello');
-        }),
+    Menu(title: 'Housing & Homelessness', page: () {}),
     Menu(title: 'Criminal Justice', page: () {}),
     Menu(title: 'Help Lines', page: () {}),
     Menu(title: 'Mental Health', page: () {}),

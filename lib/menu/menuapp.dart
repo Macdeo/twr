@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 
+import '../main.dart';
+import '../menu/menuservices.dart';
+import '../screens/contact.dart';
 import 'menulist.dart';
 
 class MenuApp extends StatelessWidget {
@@ -12,6 +15,22 @@ class MenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return ListView.builder(
+    //     itemCount: 5,
+    //     itemBuilder: (BuildContext context, int index) {
+    //       return Column(
+    //          children: [
+    //       ...(categories!.map((item) => CustomSizedBox(
+    //           colors: menuList.menuColors[item?["colorIndex"]].menuColor,
+    //           text: item?["label"],
+    //           onPress: () => NavigationService().navigateToScreen(Contact(
+    //                 reference: item?["key"],
+    //                 title: item?["label"],
+    //               ))))),
+    //     ]
+    //       );
+    //     });
+
     return Material(
       child: PopupMenuButton(
         icon: Icon(

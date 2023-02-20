@@ -28,6 +28,7 @@ class _HomeState extends State<Home> {
   MenuApp menuApp = MenuApp();
   TestMenuService testMenuService = TestMenuService();
   final MenuList menuList = MenuList();
+  final TextEditingController search = TextEditingController();
 
   int? currentIndex;
 
@@ -131,6 +132,14 @@ class _HomeState extends State<Home> {
     }
   }
 
+  void searchData() {
+    setState(() {});
+  }
+
+  // void searchContact(String query){
+  //   final suggestions = allDocData.where((element) => false);
+  // }
+
   @override
   Widget build(BuildContext context) {
     print(allDocData);
@@ -166,6 +175,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
+                  // onChanged: searchData,
                 ),
               ),
             ),
