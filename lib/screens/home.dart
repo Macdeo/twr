@@ -31,11 +31,13 @@ class _HomeState extends State<Home> {
   final TextEditingController search = TextEditingController();
 
   int? currentIndex;
+  bool searchable = false;
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   DatabaseService() {}
   List? allDocData = [];
+  List? filteredData = [];
 
   Future<void> getCategories() async {
     try {
@@ -72,6 +74,8 @@ class _HomeState extends State<Home> {
 
       setState(() {
         allDocData = modifiedData;
+        searchable = true;
+        filteredData = modifiedData;
       });
     } catch (e) {
       print(e);
@@ -175,11 +179,37 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  // onChanged: searchData,
+                  onChanged: (e) {
+                    List<dynamic> list = [];
+                    int length = allDocData!.length | 0;
+
+                    if ( !searchable ) return;
+
+                    for (var i = 0; i < length; i = i + 1) {
+                      
+                      final currentData = allDocData![i];
+
+                      bool compare = currentData!["label"].toString().toLowerCase().contains(e.toLowerCase());
+
+                      if ( compare ) {
+
+                        list.add(currentData);
+
+                      }
+
+                    }
+
+                    setState(() {
+                        
+                      filteredData = list;
+
+                    });
+
+                  },
                 ),
               ),
             ),
-            Expanded(child: MenuService(categories: allDocData)),
+            Expanded(child: MenuService(categories: filteredData)),
           ],
         ),
       ),
