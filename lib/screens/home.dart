@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   DatabaseService() {}
-  List? allDocData = [];
+  List allDocData = [];
   List? filteredData = [];
 
   Future<void> getCategories() async {
@@ -146,7 +146,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print(allDocData);
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
@@ -181,13 +180,13 @@ class _HomeState extends State<Home> {
                   ),
                   onChanged: (e) {
                     List<dynamic> list = [];
-                    int length = allDocData!.length | 0;
+                    int length = allDocData.length | 0;
 
                     if ( !searchable ) return;
 
                     for (var i = 0; i < length; i = i + 1) {
                       
-                      final currentData = allDocData![i];
+                      final currentData = allDocData[i];
 
                       bool compare = currentData!["label"].toString().toLowerCase().contains(e.toLowerCase());
 
@@ -209,7 +208,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Expanded(child: MenuService(categories: filteredData)),
+            Expanded(child: MenuService(categories: filteredData )),
           ],
         ),
       ),

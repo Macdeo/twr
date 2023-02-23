@@ -6,9 +6,10 @@ import 'menulist.dart';
 import 'package:twr/screens/contact.dart';
 
 class MenuService extends StatelessWidget {
-  const MenuService({Key? key, this.categories}) : super(key: key);
 
   final List<dynamic>? categories;
+
+  const MenuService({Key? key, this.categories }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class MenuService extends StatelessWidget {
               onPress: () => NavigationService().navigateToScreen(Contact(
                     reference: item?["key"],
                     title: item?["label"],
-                  ))))),
+                  )) ) )),
         ]);
   }
 }

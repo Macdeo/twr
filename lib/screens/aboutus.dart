@@ -86,7 +86,7 @@ class _AboutUsState extends State<AboutUs> {
             'About Us',
             style: TextStyle(color: Colors.black),
           ),
-          actions: [menuApp]),
+          actions: [MenuApp()]),
       body: WebView(
         initialUrl: 'https://the-waitingroom.org/about-us/',
         javascriptMode: JavascriptMode.unrestricted,

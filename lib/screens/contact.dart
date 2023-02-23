@@ -13,18 +13,19 @@ import 'conwebsite.dart';
 class Contact extends StatefulWidget {
   final String? reference;
   final String? title;
-  Contact({this.reference, this.title});
+
+  Contact({this.reference, this.title });
 
   @override
-  State createState() =>
-      _ContactState(reference: this.reference, title: this.title);
+  _ContactState createState() =>
+      _ContactState(reference: this.reference, title: this.title );
 }
 
 class _ContactState extends State<Contact> {
   final String? reference;
   final String? title;
 
-  _ContactState({this.reference, this.title});
+  _ContactState({this.reference, this.title });
 
   Banners banners = Banners();
 
@@ -107,6 +108,7 @@ class _ContactState extends State<Contact> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
           foregroundColor: Colors.black,
@@ -116,7 +118,7 @@ class _ContactState extends State<Contact> {
             ((title).toString()),
             style: TextStyle(color: Colors.black, fontSize: 18),
           ),
-          actions: [menuApp]),
+          actions: [MenuApp()]),
       body: SafeArea(
           child: Column(
         children: [
