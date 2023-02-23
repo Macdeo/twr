@@ -2,30 +2,37 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import '../Menu/menuapp.dart';
 import '../theme/banner.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
 
 import 'conwebsite.dart';
+
+///sharing platform
+enum Share {
+  facebook,
+  messenger,
+  twitter,
+}
 
 class Contact extends StatefulWidget {
   final String? reference;
   final String? title;
 
-  Contact({this.reference, this.title });
+  Contact({this.reference, this.title});
 
   @override
   _ContactState createState() =>
-      _ContactState(reference: this.reference, title: this.title );
+      _ContactState(reference: this.reference, title: this.title);
 }
 
 class _ContactState extends State<Contact> {
   final String? reference;
   final String? title;
 
-  _ContactState({this.reference, this.title });
+  _ContactState({this.reference, this.title});
 
   Banners banners = Banners();
 
@@ -36,15 +43,6 @@ class _ContactState extends State<Contact> {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   DatabaseService() {}
-
-  // _makingPhoneCall() async {
-  //   var url = Uri.parse(item!["directory_number"]);
-  //   if (await canLaunchUrl(url)) {
-  //     await launchUrl(url);
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
 
   Future<void> getContacts() async {
     try {
@@ -108,7 +106,7 @@ class _ContactState extends State<Contact> {
 
   @override
   Widget build(BuildContext context) {
-
+    // String facebookId = "635022908430488";
     return Scaffold(
       appBar: AppBar(
           foregroundColor: Colors.black,
@@ -130,24 +128,46 @@ class _ContactState extends State<Contact> {
                       height: 10,
                     ),
                     CustomsCard(
-                        titles: item!["post_title"],
-                        subtitles: item!["post_excerpt"],
-                        call: () async {
-                          var url =
-                              Uri.parse('tel:' + item!["directory_number"]);
-                          if (await canLaunchUrl(url)) {
-                            await launchUrl(url);
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        },
-                        url: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      YourWebView(item!["directory_url"])));
-                        }),
+                      titles: item!["post_title"],
+                      subtitles: item!["post_excerpt"],
+                      call: () async {
+                        var url = Uri.parse('tel:' + item!["directory_number"]);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      message: () async {
+                        var url = Uri.parse('sms:' + item!["directory_number"]);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      url: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    YourWebView(item!["directory_url"])));
+                      },
+                      facebook: () {
+                        SocialShare(
+                                shareMsg: item!["post_title"],
+                                shareUrl: item!["directory_url"])
+                            .onButtonTap(Share.facebook);
+                        print('facebook ${item!["post_title"]}');
+                      },
+                      twitter: () {
+                        SocialShare(
+                                shareMsg: item!["post_title"],
+                                shareUrl: item!["directory_url"])
+                            .onButtonTap(Share.twitter);
+                        print('twitter');
+                      },
+                    ),
                     // phone: item!["directory_number"],
                     // url: item!["directory_url"]
                   ])),
@@ -165,13 +185,19 @@ class CustomsCard extends StatelessWidget {
   final String titles;
   final String subtitles;
   final VoidCallback call;
+  final VoidCallback message;
   final VoidCallback url;
+  final VoidCallback facebook;
+  final VoidCallback twitter;
 
   CustomsCard(
       {required this.titles,
       required this.subtitles,
       required this.call,
+      required this.message,
       required this.url,
+      required this.facebook,
+      required this.twitter,
       Key? key})
       : super(key: key);
 
@@ -229,6 +255,18 @@ class CustomsCard extends StatelessWidget {
                   color: Color(0xFF3c7bff),
                   shape: RoundedRectangleBorder(),
                 ),
+                child: IconButton(
+                  icon: Icon(Icons.message),
+                  color: Colors.white,
+                  onPressed: message,
+                ),
+              ),
+              Ink(
+                height: 45,
+                decoration: ShapeDecoration(
+                  color: Color(0xFF3c7bff),
+                  shape: RoundedRectangleBorder(),
+                ),
                 child: TextButton(
                   child: Text(
                     'Website',
@@ -247,12 +285,11 @@ class CustomsCard extends StatelessWidget {
                   shape: CircleBorder(),
                 ),
                 child: IconButton(
-                  icon: FaIcon(
-                    FontAwesomeIcons.facebook,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
+                    icon: FaIcon(
+                      FontAwesomeIcons.facebook,
+                      color: Colors.white,
+                    ),
+                    onPressed: facebook),
               ),
               Ink(
                 decoration: ShapeDecoration(
@@ -264,20 +301,7 @@ class CustomsCard extends StatelessWidget {
                     FontAwesomeIcons.twitter,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
-                ),
-              ),
-              Ink(
-                decoration: ShapeDecoration(
-                  color: Color(0xFF0077b5),
-                  shape: CircleBorder(),
-                ),
-                child: IconButton(
-                  icon: FaIcon(
-                    FontAwesomeIcons.linkedin,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
+                  onPressed: twitter,
                 ),
               ),
               Ink(
@@ -301,5 +325,33 @@ class CustomsCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class SocialShare {
+  String shareMsg;
+  String shareUrl;
+
+  SocialShare({required this.shareMsg, required this.shareUrl});
+
+  Future<void> onButtonTap(Share share) async {
+    String msg = shareMsg;
+    String url = shareUrl;
+
+    String? response;
+    final FlutterShareMe flutterShareMe = FlutterShareMe();
+    switch (share) {
+      case Share.facebook:
+        response = await flutterShareMe.shareToFacebook(url: url, msg: msg);
+        print(url);
+        break;
+      case Share.messenger:
+        response = await flutterShareMe.shareToMessenger(url: url, msg: msg);
+        break;
+      case Share.twitter:
+        response = await flutterShareMe.shareToTwitter(url: url, msg: msg);
+        break;
+    }
+    debugPrint(response);
   }
 }

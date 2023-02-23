@@ -70,12 +70,13 @@ class _SlidersState extends State<Sliders> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Center(
           child: CustomCarouselSlider(
         items: itemList,
-        height: 130,
-        subHeight: 50,
+        height: screenHeight * 0.15,
+        // subHeight: 50,
         showSubBackground: false,
         animationDuration: const Duration(microseconds: 3000),
         indicatorPosition: IndicatorPosition.none,

@@ -146,6 +146,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double screensize = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
@@ -165,7 +166,9 @@ class _HomeState extends State<Home> {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: TextField(
+                  style: TextStyle(height: screensize * 0.002),
                   decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
                     hintText: 'Search',
                     filled: true,
                     fillColor: Colors.white,
@@ -182,33 +185,29 @@ class _HomeState extends State<Home> {
                     List<dynamic> list = [];
                     int length = allDocData.length | 0;
 
-                    if ( !searchable ) return;
+                    if (!searchable) return;
 
                     for (var i = 0; i < length; i = i + 1) {
-                      
                       final currentData = allDocData[i];
 
-                      bool compare = currentData!["label"].toString().toLowerCase().contains(e.toLowerCase());
+                      bool compare = currentData!["label"]
+                          .toString()
+                          .toLowerCase()
+                          .contains(e.toLowerCase());
 
-                      if ( compare ) {
-
+                      if (compare) {
                         list.add(currentData);
-
                       }
-
                     }
 
                     setState(() {
-                        
                       filteredData = list;
-
                     });
-
                   },
                 ),
               ),
             ),
-            Expanded(child: MenuService(categories: filteredData )),
+            Expanded(child: MenuService(categories: filteredData)),
           ],
         ),
       ),
