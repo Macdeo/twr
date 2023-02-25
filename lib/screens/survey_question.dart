@@ -155,93 +155,188 @@ class _SurveyQuestionState extends State<SurveyQuestion> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                CustomContainer(
-                                    widths:
-                                        groupValue == questionBank.getAnwser(0)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color(0xFF7F53AC),
+                                        width: groupValue ==
+                                                questionBank.getAnwser(0)
                                             ? 3
                                             : 1,
-                                    texts: questionBank.getAnwser(0),
-                                    values: questionBank.getAnwser(0),
-                                    selecteds:
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: RadioListTile(
+                                    title: Text(
+                                      questionBank.getAnwser(0),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    value: questionBank.getAnwser(0),
+                                    groupValue: groupValue,
+                                    selected:
                                         groupValue == questionBank.getAnwser(0),
-                                    onChangeds: (value) {
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                    onChanged: (value) {
                                       setState(() {
                                         groupValue = value.toString();
                                         print(groupValue);
                                       });
-                                    }),
+                                    },
+                                    activeColor: Color(0xFF7F53AC),
+                                    tileColor: Colors.green,
+                                  ),
+                                ),
                                 SizedBox(
                                   height: 20,
                                 ),
-                                CustomContainer(
-                                    widths:
-                                        groupValue == questionBank.getAnwser(1)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color(0xFF7F53AC),
+                                        width: groupValue ==
+                                                questionBank.getAnwser(1)
                                             ? 3
                                             : 1,
-                                    texts: questionBank.getAnwser(1),
-                                    values: questionBank.getAnwser(1),
-                                    selecteds:
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: RadioListTile(
+                                    title: Text(
+                                      questionBank.getAnwser(1),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    value: questionBank.getAnwser(1),
+                                    groupValue: groupValue,
+                                    selected:
                                         groupValue == questionBank.getAnwser(1),
-                                    onChangeds: (value) {
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                    onChanged: (value) {
                                       setState(() {
                                         groupValue = value.toString();
                                         print(groupValue);
                                       });
-                                    }),
+                                    },
+                                    activeColor: Color(0xFF7F53AC),
+                                    tileColor: Colors.green,
+                                  ),
+                                ),
                                 SizedBox(
                                   height: 20,
                                 ),
-                                CustomContainer(
-                                    widths:
-                                        groupValue == questionBank.getAnwser(2)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color(0xFF7F53AC),
+                                        width: groupValue ==
+                                                questionBank.getAnwser(2)
                                             ? 3
                                             : 1,
-                                    texts: questionBank.getAnwser(2),
-                                    values: questionBank.getAnwser(2),
-                                    selecteds:
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: RadioListTile(
+                                    title: Text(
+                                      questionBank.getAnwser(2),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    value: questionBank.getAnwser(2),
+                                    groupValue: groupValue,
+                                    selected:
                                         groupValue == questionBank.getAnwser(2),
-                                    onChangeds: (value) {
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                    onChanged: (value) {
                                       setState(() {
                                         groupValue = value.toString();
                                         print(groupValue);
                                       });
-                                    }),
+                                    },
+                                    activeColor: Color(0xFF7F53AC),
+                                    tileColor: Colors.green,
+                                  ),
+                                ),
                                 SizedBox(
                                   height: 20,
                                 ),
-                                CustomContainer(
-                                    widths:
-                                        groupValue == questionBank.getAnwser(3)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color(0xFF7F53AC),
+                                        width: groupValue ==
+                                                questionBank.getAnwser(3)
                                             ? 3
                                             : 1,
-                                    texts: questionBank.getAnwser(3),
-                                    values: questionBank.getAnwser(3),
-                                    selecteds:
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: RadioListTile(
+                                    title: Text(
+                                      questionBank.getAnwser(3),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    value: questionBank.getAnwser(3),
+                                    groupValue: groupValue,
+                                    selected:
                                         groupValue == questionBank.getAnwser(3),
-                                    onChangeds: (value) {
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                    onChanged: (value) {
                                       setState(() {
                                         groupValue = value.toString();
                                         print(groupValue);
                                       });
-                                    }),
+                                    },
+                                    activeColor: Color(0xFF7F53AC),
+                                    tileColor: Colors.green,
+                                  ),
+                                ),
                                 SizedBox(
                                   height: 20,
                                 ),
-                                CustomContainer(
-                                    widths:
-                                        groupValue == questionBank.getAnwser(4)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color(0xFF7F53AC),
+                                        width: groupValue ==
+                                                questionBank.getAnwser(4)
                                             ? 3
                                             : 1,
-                                    texts: questionBank.getAnwser(4),
-                                    values: questionBank.getAnwser(4),
-                                    selecteds:
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: RadioListTile(
+                                    title: Text(
+                                      questionBank.getAnwser(4),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    value: questionBank.getAnwser(4),
+                                    groupValue: groupValue,
+                                    selected:
                                         groupValue == questionBank.getAnwser(4),
-                                    onChangeds: (value) {
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                    onChanged: (value) {
                                       setState(() {
                                         groupValue = value.toString();
                                         print(groupValue);
                                       });
-                                    }),
+                                    },
+                                    activeColor: Color(0xFF7F53AC),
+                                    tileColor: Colors.green,
+                                  ),
+                                ),
                                 SizedBox(
                                   height: 30,
                                 ),
@@ -331,47 +426,52 @@ class _SurveyQuestionState extends State<SurveyQuestion> {
   }
 }
 
-class CustomContainer extends StatelessWidget {
-  // const CustomContainer({Key? key}) : super(key: key);
+// class CustomContainer extends StatefulWidget {
+//   // const CustomContainer({Key? key}) : super(key: key);
 
-  double widths;
-  String texts;
-  String values;
-  bool selecteds;
-  final void Function(String?) onChangeds;
+//   double widths;
+//   String texts;
+//   String values;
+//   bool selecteds;
+//   final void Function(String?) onChangeds;
 
-  CustomContainer(
-      {required this.widths,
-      required this.texts,
-      required this.values,
-      required this.selecteds,
-      required this.onChangeds});
+//   CustomContainer(
+//       {required this.widths,
+//       required this.texts,
+//       required this.values,
+//       required this.selecteds,
+//       required this.onChangeds});
 
-  @override
-  Widget build(BuildContext context) {
-    // QuestionBank questionBank = QuestionBank();
-    String groupValue = "";
+//   @override
+//   State<CustomContainer> createState() => _CustomContainerState();
+// }
 
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Color(0xFF7F53AC),
-            width: widths,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
-      child: RadioListTile(
-        title: Text(
-          texts,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        value: values,
-        groupValue: groupValue,
-        selected: selecteds,
-        controlAffinity: ListTileControlAffinity.trailing,
-        onChanged: onChangeds,
-        activeColor: Color(0xFF7F53AC),
-        tileColor: Colors.green,
-      ),
-    );
-  }
-}
+// class _CustomContainerState extends State<CustomContainer> {
+//   @override
+//   Widget build(BuildContext context) {
+//     // QuestionBank questionBank = QuestionBank();
+//     String groupValue = "";
+
+//     return Container(
+//       decoration: BoxDecoration(
+//           border: Border.all(
+//             color: Color(0xFF7F53AC),
+//             width: widget.widths,
+//           ),
+//           borderRadius: BorderRadius.all(Radius.circular(20))),
+//       child: RadioListTile(
+//         title: Text(
+//           widget.texts,
+//           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//         ),
+//         value: widget.values,
+//         groupValue: groupValue,
+//         selected: widget.selecteds,
+//         controlAffinity: ListTileControlAffinity.trailing,
+//         onChanged: widget.onChangeds,
+//         activeColor: Color(0xFF7F53AC),
+//         tileColor: Colors.green,
+//       ),
+//     );
+//   }
+// }
