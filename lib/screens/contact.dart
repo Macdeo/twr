@@ -21,7 +21,10 @@ class Contact extends StatefulWidget {
   final String? reference;
   final String? title;
 
-  Contact({this.reference, this.title});
+  Widget? addFavourite;
+  List<Widget>? favouriteList;
+
+  Contact({this.reference, this.title, this.favouriteList, this.addFavourite});
 
   @override
   _ContactState createState() =>
@@ -106,7 +109,9 @@ class _ContactState extends State<Contact> {
 
   @override
   Widget build(BuildContext context) {
-    // String facebookId = "635022908430488";
+    Widget addFavourite;
+    List<dynamic> favouriteList = [];
+
     return Scaffold(
       appBar: AppBar(
           foregroundColor: Colors.black,
@@ -179,7 +184,7 @@ class _ContactState extends State<Contact> {
   }
 }
 
-class CustomsCard extends StatelessWidget {
+class CustomsCard extends StatefulWidget {
   // const CustomCard({Key? key}) : super(key: key);
 
   final String titles;
@@ -202,6 +207,11 @@ class CustomsCard extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<CustomsCard> createState() => _CustomsCardState();
+}
+
+class _CustomsCardState extends State<CustomsCard> {
+  @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
@@ -218,7 +228,7 @@ class CustomsCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  titles,
+                  widget.titles,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -226,7 +236,7 @@ class CustomsCard extends StatelessWidget {
             subtitle: Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
               child: Text(
-                subtitles,
+                widget.subtitles,
                 style: TextStyle(fontSize: 16, color: Colors.black),
               ),
             ),
@@ -246,7 +256,7 @@ class CustomsCard extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.call),
                   color: Colors.white,
-                  onPressed: call,
+                  onPressed: widget.call,
                 ),
               ),
               Ink(
@@ -258,7 +268,7 @@ class CustomsCard extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(Icons.message),
                   color: Colors.white,
-                  onPressed: message,
+                  onPressed: widget.message,
                 ),
               ),
               Ink(
@@ -275,7 +285,7 @@ class CustomsCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 12),
                   ),
-                  onPressed: url,
+                  onPressed: widget.url,
                 ),
               ),
               Ink(
@@ -289,7 +299,7 @@ class CustomsCard extends StatelessWidget {
                       FontAwesomeIcons.facebook,
                       color: Colors.white,
                     ),
-                    onPressed: facebook),
+                    onPressed: widget.facebook),
               ),
               Ink(
                 decoration: ShapeDecoration(
@@ -301,7 +311,7 @@ class CustomsCard extends StatelessWidget {
                     FontAwesomeIcons.twitter,
                     color: Colors.white,
                   ),
-                  onPressed: twitter,
+                  onPressed: widget.twitter,
                 ),
               ),
               Ink(

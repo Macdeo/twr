@@ -95,7 +95,7 @@ class _AboutUsState extends State<AboutUs> {
         opacity: .2,
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
         elevation: 8,
-        fabLocation: BubbleBottomBarFabLocation.end, //new
+        // fabLocation: BubbleBottomBarFabLocation.end, //new
         hasNotch: true, //new
         hasInk: true, //new, gives a cute ink effect
         inkColor: Colors.black12, //optional, uses theme color if not specified
@@ -153,8 +153,8 @@ class _AboutUsState extends State<AboutUs> {
               title: Text("Survey"))
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: FloatButton(),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      // floatingActionButton: FloatButton(),
     );
   }
 }

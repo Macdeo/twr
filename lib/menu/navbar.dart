@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:twr/screens/aboutus.dart';
 import 'package:twr/screens/contact.dart';
+// import 'package:twr/screens/favourite.dart';
 import 'package:twr/screens/news.dart';
 import 'package:twr/screens/survey_home.dart';
 
@@ -142,18 +143,21 @@ class _NavBarState extends State<NavBar> {
   }
 }
 
-class FloatButton extends StatelessWidget {
-  const FloatButton({Key? key}) : super(key: key);
+// class FloatButton extends StatelessWidget {
+//   const FloatButton({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      elevation: 10,
-      splashColor: Colors.green,
-      backgroundColor: Color.fromARGB(255, 122, 1, 72),
-      focusColor: Colors.green,
-      onPressed: () {},
-      child: const Icon(Icons.favorite),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return FloatingActionButton(
+//       elevation: 10,
+//       splashColor: Colors.green,
+//       backgroundColor: Color.fromARGB(255, 122, 1, 72),
+//       focusColor: Colors.green,
+//       onPressed: () {
+//         Navigator.of(context)
+//             .push(MaterialPageRoute(builder: (context) => const Favourite()));
+//       },
+//       child: const Icon(Icons.favorite),
+//     );
+//   }
+// }
