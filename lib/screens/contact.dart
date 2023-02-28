@@ -172,6 +172,15 @@ class _ContactState extends State<Contact> {
                             .onButtonTap(Share.twitter);
                         print('twitter');
                       },
+                      email: () async {
+                        var url = Uri.parse(
+                            'mailto:?subject=${item!["post_title"]}&body=Phone Number: ${item!["directory_number"]} ⎮ Website: ${item!["directory_url"]} ⎮ Details: ${item!["post_excerpt"]} ');
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
                     ),
                     // phone: item!["directory_number"],
                     // url: item!["directory_url"]
@@ -194,6 +203,7 @@ class CustomsCard extends StatefulWidget {
   final VoidCallback url;
   final VoidCallback facebook;
   final VoidCallback twitter;
+  final VoidCallback email;
 
   CustomsCard(
       {required this.titles,
@@ -203,6 +213,7 @@ class CustomsCard extends StatefulWidget {
       required this.url,
       required this.facebook,
       required this.twitter,
+      required this.email,
       Key? key})
       : super(key: key);
 
@@ -324,7 +335,7 @@ class _CustomsCardState extends State<CustomsCard> {
                     Icons.email,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: widget.email,
                 ),
               ),
             ],
