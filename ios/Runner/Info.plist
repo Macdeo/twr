@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Twr</string>
+	<string>TWR</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,15 +15,50 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>twr</string>
+	<string>TWR</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>635022908430488</string>
+				<string>fbauth2</string>
+				<string>fbapi</string>
+				<string>fbapi20130214</string>
+				<string>fbapi20130410</string>
+				<string>fbapi20130702</string>
+				<string>fbapi20131010</string>
+				<string>fbapi20131219</string>
+				<string>fbapi20140410</string>
+				<string>fbapi20140116</string>
+				<string>fbapi20150313</string>
+				<string>fbapi20150629</string>
+				<string>fbapi20160328</string>
+				<string>fbauth</string>
+				<string>fb-messenger-share-api</string>
+				<string>fbauth2</string>
+				<string>fbshareextension</string>
+				<string>tg</string>
+				<string>whatsapp</string>
+				<string>twitter</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FacebookAppID</key>
+	<string>fbid</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>sms</string>
+		<string>tel</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -45,42 +82,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>sms</string>
-		<string>tel</string>
-	</array>
-	<key>FacebookAppID</key>
-	<string>fbid</string>
-	<key>CFBundleURLTypes</key>
-		<array>
-			<dict>
-				<key>CFBundleURLSchemes</key>
-				<array>
-					<string>635022908430488</string>
-					<string>fbauth2</string>
-					<string>fbapi</string>
-					<string>fbapi20130214</string>
-					<string>fbapi20130410</string>
-					<string>fbapi20130702</string>
-					<string>fbapi20131010</string>
-					<string>fbapi20131219</string>
-					<string>fbapi20140410</string>
-					<string>fbapi20140116</string>
-					<string>fbapi20150313</string>
-					<string>fbapi20150629</string>
-					<string>fbapi20160328</string>
-					<string>fbauth</string>
-					<string>fb-messenger-share-api</string>
-					<string>fbauth2</string>
-					<string>fbshareextension</string>
-					<string>tg</string>
-					<string>whatsapp</string>
-					<string>twitter</string>
-				</array>
-			</dict>
-		</array>
 </dict>
 </plist>
