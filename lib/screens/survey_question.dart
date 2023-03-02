@@ -150,7 +150,7 @@ class _SurveyQuestionState extends State<SurveyQuestion> {
                       padding: EdgeInsets.all(16),
                       color: Colors.white,
                       child: questionBank.noAnwser()
-                          ? Column(
+                          ? ListView(
                               children: [
                                 SizedBox(
                                   height: 20,
