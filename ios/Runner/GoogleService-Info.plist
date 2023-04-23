@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>485876620947-35273b1t8h2ffc15103k9nhutblk4qj7.apps.googleusercontent.com</string>
+	<string>****</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.485876620947-35273b1t8h2ffc15103k9nhutblk4qj7</string>
+	<string>****</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCA4zZmic98nUEkpDA7fetc0GQj-D6sRV0</string>
+	<string>****</string>
 	<key>GCM_SENDER_ID</key>
-	<string>485876620947</string>
+	<string>****</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:485876620947:ios:cbf121a63cde4345c0b766</string>
+	<string>****</string>
 	<key>DATABASE_URL</key>
 	<string>https://thewaitingroom-6f4c0-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
