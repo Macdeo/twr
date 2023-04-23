@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "485876620947",
-    "firebase_url": "https://thewaitingroom-6f4c0-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "thewaitingroom-6f4c0",
-    "storage_bucket": "thewaitingroom-6f4c0.appspot.com"
+    "project_number": "****",
+    "firebase_url": "****",
+    "project_id": "****",
+    "storage_bucket": "****"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:485876620947:android:c6c151bbae289251c0b766",
+        "mobilesdk_app_id": "****",
         "android_client_info": {
           "package_name": "com.app.twr"
         }
       },
       "oauth_client": [
         {
-          "client_id": "485876620947-q1i61gtku1mp114nmf6ri3er701t2gui.apps.googleusercontent.com",
+          "client_id": "****",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDVJNUP6QyZJ6Ws5_kJxzBx0cKuyWCJJx8"
+          "current_key": "****"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "485876620947-q1i61gtku1mp114nmf6ri3er701t2gui.apps.googleusercontent.com",
+              "client_id": "****",
               "client_type": 3
             }
           ]
